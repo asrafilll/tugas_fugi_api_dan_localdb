@@ -24,9 +24,28 @@ class HtLineChartController extends State<HtLineChartView>
   List<SalesData> salesDataList = [];
   loadSalesHistory() async {
     salesDataList = [];
+    var response = await Dio().get(
+      "${AppConfig.baseUrl}/sales",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+    );
+    Map obj = response.data;
+    List items = obj["data"];
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      salesDataList.add(
+        SalesData(
+          year: item["year"],
+          sales: item["sales"],
+        ),
+      );
+    }
     setState(() {});
     /*
-    TODO: --
+    
     1. Buat sebuah get request menggunakan DIO
     ! snippet: dio_get
 

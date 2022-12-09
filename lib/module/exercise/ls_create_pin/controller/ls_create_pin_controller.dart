@@ -21,8 +21,18 @@ class LsCreatePinController extends State<LsCreatePinView>
   String pin = "";
 
   updatePin(int number) async {
+    if (pin.length >= 4) return;
+    if (pin.length >= 4) return;
+    pin += number.toString();
+    setState(() {});
+    if (pin.length == 4) {
+      await mainStorage.put("pin", pin);
+      await showInfoDialog("Your PIN has been created!");
+      Get.back();
+    }
+
     /*
-    TODO: --
+   
     1. Buat if statement 
     ###
     if (pin.length >= 4) return;

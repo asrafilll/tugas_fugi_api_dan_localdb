@@ -64,28 +64,9 @@ class HtProductListController extends State<HtProductListView>
     productList = [];
     setState(() {});
 
-    /*
-    TODO: --
-    1. Buat sebuah get request menggunakan DIO
-    ! snippet: dio_get
-
-    @GET
-    @URL
-    "${AppConfig.baseUrl}/products"
-
-    2. Masukkan response data ke dalam productList
-    productList = obj["data"];
-
-    3. Panggil setState setelah-nya
-
-    4. Klik tombol Generate
-    Jika ada product yang muncul di layar,
-    Tasks ini selesai
-
-    5. Klik tombol Refresh,
-    Jika list-nya ter-refresh,
-    Tasks ini selesai
-    */
+    var result = await Dio().get('${AppConfig.baseUrl}/products');
+    var data = result.data;
+    productList.add(data);
 
     var url = "${AppConfig.baseUrl}/products";
     print("url: $url");

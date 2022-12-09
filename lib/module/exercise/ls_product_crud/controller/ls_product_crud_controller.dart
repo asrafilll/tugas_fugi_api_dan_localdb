@@ -26,8 +26,11 @@ class LsProductCrudController extends State<LsProductCrudView>
 
   loadProductList() async {
     ready = true;
+    productList = mainStorage.get("products") ?? [];
+
+    setState(() {});
     /*
-    TODO: --
+
     1. Ok, baca storage "products" dan masukkan ke dalam List
     ###
     productList = mainStorage.get("products") ?? [];
@@ -38,6 +41,10 @@ class LsProductCrudController extends State<LsProductCrudView>
   }
 
   addProduct(Map newProduct) async {
+    productList.add(newProduct);
+    setState(() {});
+    saveproductList();
+
     /*
     3. Variabel map, berisi data yang di generate Faker
     Yuk, kita simpan data user ketika kita menekan tombol add
@@ -61,6 +68,9 @@ class LsProductCrudController extends State<LsProductCrudView>
   }
 
   delete(item) {
+    productList.remove(item);
+    setState(() {});
+    saveproductList();
     /*  
     7. Yuk kita delete item yang dipilih dari list
     gunakan kode ini:
@@ -75,6 +85,11 @@ class LsProductCrudController extends State<LsProductCrudView>
   }
 
   edit(item) {
+    item["product_name"] = faker.commerce.productName();
+
+    setState(() {});
+    saveproductList();
+
     /*  
     7. Yuk kita update item yang dipilih dari list
     gunakan kode ini:

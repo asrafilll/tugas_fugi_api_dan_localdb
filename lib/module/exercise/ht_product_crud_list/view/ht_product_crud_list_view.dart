@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:example/core.dart';
 
 /*
-TODO: --
+
 1. Buatlah sebuah FORM Product, klik tombol Add dibawah kanan,
 buka HtProductCrudFormView
 */
